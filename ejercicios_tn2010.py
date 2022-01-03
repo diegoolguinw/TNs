@@ -21,11 +21,11 @@ def yMa(kM, p, c, t):
 def omori_RK4(kM,p,c,t0,T,h,N,f):
     t = np.linspace(t0,T,N)
     y_RK4 = np.zeros(N)
-    y_RK4[0] = yMa(t0)
+    y_RK4[0] = yMa(kM, p, c, t0)
     for i in range(N-1):
-        g1 = f(t[i])
-        g2 = f(t[i]+h/2)
-        g3 = f(t[i]+h/2)
-        g4 = f(t[i+1])
+        g1 = f(kM, p, t[i])
+        g2 = f(kM, p,t[i]+h/2)
+        g3 = f(kM, p,t[i]+h/2)
+        g4 = f(kM, p,t[i+1])
         y_RK4[i+1] = y_RK4[i] + h/6*(g1+2*g2+2*g3+g4)
     return y_RK4
